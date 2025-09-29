@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sebuah Renungan</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&family=Poppins:wght@300&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #1a1a2e;
+            color: #e0e0e0;
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .background-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: translate(-50%, -50%);
+            z-index: -2;
+            opacity: 0.3;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(0deg, rgba(26,26,46,1) 0%, rgba(26,26,46,0.5) 50%, rgba(26,26,46,1) 100%);
+            z-index: -1;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+            max-width: 800px;
+            animation: fadeIn 3s ease-in-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .floating-text {
+            font-size: 1.8em;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            animation: float 15s ease-in-out infinite;
+        }
+
+        .quote-part {
+            display: block;
+            margin-bottom: 25px;
+            opacity: 0;
+            animation: floatUp 12s ease-in-out infinite;
+        }
+
+        .quote-part:nth-child(1) {
+            animation-delay: 0s;
+        }
+        .quote-part:nth-child(2) {
+            animation-delay: 4s;
+        }
+        .quote-part:nth-child(3) {
+            animation-delay: 8s;
+        }
+
+
+        @keyframes floatUp {
+            0%, 25%, 100% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            5%, 20% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Particles effect */
+        .particle {
+            position: absolute;
+            background: #fff;
+            border-radius: 50%;
+            animation: particle-animation 20s linear infinite;
+            opacity: 0;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="overlay"></div>
+    <video autoplay muted loop class="background-video">
+        <source src="https://assets.mixkit.co/videos/preview/mixkit-full-moon-in-a-dark-sky-4084-large.mp4" type="video/mp4">
+        Browser Anda tidak mendukung tag video.
+    </video>
+
+    <div class="container">
+        <div class="floating-text">
+            <span class="quote-part">"Jangan pernah menyesali suatu penantian yang tak direstui oleh takdir, ikhlaskan dan luaskan hati kita untuk bisa menerima kenyataan."</span>
+            <span class="quote-part">"Ingatkah dengan kata-kata ini!?"</span>
+            <span class="quote-part">"Terkadang takdir yang akan diberikan sekarang lebih baik daripada sesuatu yg sangat kita harapkan."</span>
+        </div>
+    </div>
+
+    <audio autoplay loop>
+        <source src="https://firebasestorage.googleapis.com/v0/b/codepen-22928.appspot.com/o/2022%2FPeaceful%20and%20Emotional%20Islamic%20Music.mp3?alt=media&token=c1a3b38c-4235-4303-b09b-6d1ab1d9165b" type="audio/mpeg">
+        Browser Anda tidak mendukung elemen audio.
+    </audio>
+
+    <script>
+        // Script untuk membuat efek partikel bintang
+        function createParticles() {
+            const body = document.querySelector('body');
+            const particleCount = 50;
+            for (let i = 0; i < particleCount; i++) {
+                let particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                let size = Math.random() * 3;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                particle.style.top = `${Math.random() * 100}%`;
+                particle.style.left = `${Math.random() * 100}%`;
+                
+                let animationDuration = (Math.random() * 15) + 10;
+                particle.style.animationDuration = `${animationDuration}s`;
+                particle.style.animationDelay = `${Math.random() * 10}s`;
+                
+                body.appendChild(particle);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', createParticles);
+    </script>
+
+</body>
+</html>
